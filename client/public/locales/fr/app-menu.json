@@ -1,0 +1,15 @@
+{
+    "simulation_menu_key": "Simulation",
+    "simulation_btn_start": "Lancer",
+    "simulation_btn_reset": "Réinitialiser",
+    "simulation_start_node_key": "Noeud de départ",
+    "simulation_end_node_key": "Noeud d'arrivé",
+    "simulation_select_node_helper": "Veuillez selectionner un noeud",
+    "simulation_algorithm_key": "Choisissez un algorithme",
+    "menu_section_shortest_path_title": "Recherche du chemin le plus court",
+    "menu_section_cycle_detection_title": "Détection de cycle",
+    "menu_section_min_spanning_tree_title": "Arborescence de recouvrement minimale",
+    "menu_section_strongly_connected_component_title": "Composante fortement connexe",
+    "menu_section_clustering_title": "Clustering",
+    "menu_application_title": "Algorithmes"
+}

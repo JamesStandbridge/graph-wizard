@@ -1,0 +1,25 @@
+* {
+    font-family: SourceSansPro, sans-serif !important;
+}
+
+.node-hover {
+    stroke: #5ec4c9;
+    stroke-width: 4px;
+    transition: stroke-width 0.3s ease;
+}
+
+.node-active {
+    stroke: #e55e5e;
+    stroke-width: 4px;
+    transition: stroke-width 0.3s ease;
+}
+
+.no-select {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.arrowHead {
+    fill: #999;
+}
