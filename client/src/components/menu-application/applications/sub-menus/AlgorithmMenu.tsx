@@ -1,4 +1,5 @@
 import { useGraphSimulationStore } from '../../../../state-manager/simulationStore';
+import { ApplicationMenuContainer } from './algorithm-menu.styled';
 import DijkstraConfigurationMenu from './dijkstra/DijkstraConfigurationMenu';
 
 type Props = {};
@@ -11,7 +12,11 @@ const AlgorithmMenu = ({}: Props) => {
     console.log(currentAlgorithm);
 
     if (currentAlgorithm === 'dijkstra') {
-        return <DijkstraConfigurationMenu />;
+        return (
+            <ApplicationMenuContainer>
+                <DijkstraConfigurationMenu />
+            </ApplicationMenuContainer>
+        );
     }
 
     return null;

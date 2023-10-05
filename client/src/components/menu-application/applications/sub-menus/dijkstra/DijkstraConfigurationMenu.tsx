@@ -1,18 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { LiaRedoAltSolid, LiaPlaySolid } from 'react-icons/lia';
 
-import {
-    ApplicationMenuContainer,
-    MenuLabel,
-    MenuValue,
-    MenuLine,
-} from './dijkstra-configuration-menu.styled';
 import Button from '../../../../form/base/button/Button';
 import {
     AlgorithmConfiguration,
     DijkstraConfiguration,
 } from '../../../../../state-manager/store.type';
 import { useGraphSimulationStore } from '../../../../../state-manager/simulationStore';
+import { MenuLabel, MenuLine, MenuValue } from '../algorithm-menu.styled';
 
 type Props = {};
 
@@ -32,7 +27,7 @@ const DijkstraConfigurationMenu = ({}: Props) => {
     const isSimulating = false;
 
     return (
-        <ApplicationMenuContainer>
+        <>
             <MenuLine>
                 <MenuLabel>{t('simulation_start_node_key')}</MenuLabel>
                 <MenuValue italic={!dijkstra.startNodeId}>
@@ -61,7 +56,7 @@ const DijkstraConfigurationMenu = ({}: Props) => {
                         : t('simulation_btn_start')}
                 </Button>
             </MenuLine>
-        </ApplicationMenuContainer>
+        </>
     );
 };
 
