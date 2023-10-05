@@ -1,24 +1,20 @@
 import { create } from 'zustand';
-import { GraphLink, GraphNode } from '../components/graph/graph.type';
-
-interface GraphSimulationState {
-    startNodeId: string | null;
-    endNodeId: string | null;
-    nodes: GraphNode[];
-    links: GraphLink[];
-
-    setStartNodeId: (id: string | null) => void;
-    setEndNodeId: (id: string | null) => void;
-}
+import {
+    AlgorithmConfiguration,
+    GraphAlgorithm,
+    GraphSimulationState,
+} from './store.type';
 
 export const useGraphSimulationStore = create<GraphSimulationState>()(
     (set) => ({
-        startNodeId: null,
-        endNodeId: null,
         nodes: [],
         links: [],
+        algorithm: null,
+        configuration: null,
 
-        setStartNodeId: (id) => set({ startNodeId: id }),
-        setEndNodeId: (id) => set({ endNodeId: id }),
+        setAlgorithm: (algorithm: GraphAlgorithm | null) => set({ algorithm }),
+
+        setConfiguration: (configuration: AlgorithmConfiguration | null) =>
+            set({ configuration }),
     }),
 );

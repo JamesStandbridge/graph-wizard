@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MenuValueProps } from './application-menu.type';
+import { MenuValueProps } from './dijkstra-configuration.type';
 
 export const MenuLine = styled.div`
     display: flex;
