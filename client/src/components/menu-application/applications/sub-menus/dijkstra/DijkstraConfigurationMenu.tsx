@@ -6,22 +6,18 @@ import {
     MenuLabel,
     MenuValue,
     MenuLine,
-} from './dijkstra-configuration.styled';
-import { useGraphSimulationStore } from '../../../../state-manager/simulationStore';
-import Select from '../../../form/base/select/Select';
-import Button from '../../../form/base/button/Button';
+} from './dijkstra-configuration-menu.styled';
+import Button from '../../../../form/base/button/Button';
 import {
     AlgorithmConfiguration,
     DijkstraConfiguration,
-} from '../../../../state-manager/store.type';
+} from '../../../../../state-manager/store.type';
+import { useGraphSimulationStore } from '../../../../../state-manager/simulationStore';
 
-type Props = { onSimulationTrigger: () => void; isSimulating: boolean };
+type Props = {};
 
-const DijkstraConfiguration = ({
-    onSimulationTrigger,
-    isSimulating,
-}: Props) => {
-    const { t } = useTranslation('dijkstra-menu');
+const DijkstraConfigurationMenu = ({}: Props) => {
+    const { t } = useTranslation('app-menu');
 
     const algoConf: AlgorithmConfiguration | null = useGraphSimulationStore(
         (state) => state.configuration,
@@ -30,6 +26,10 @@ const DijkstraConfiguration = ({
     if (!algoConf) return null;
 
     const dijkstra = algoConf as DijkstraConfiguration;
+
+    const onSimulationTrigger = () => {};
+
+    const isSimulating = false;
 
     return (
         <ApplicationMenuContainer>
@@ -65,4 +65,4 @@ const DijkstraConfiguration = ({
     );
 };
 
-export default DijkstraConfiguration;
+export default DijkstraConfigurationMenu;
