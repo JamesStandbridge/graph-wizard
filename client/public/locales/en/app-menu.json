@@ -4,7 +4,7 @@
     "simulation_btn_reset": "Reset",
     "simulation_start_node_key": "Start node",
     "simulation_end_node_key": "End node",
-    "simulation_select_node_helper": "Please select a node",
+    "simulation_select_node_helper": "Please select a node (R-click on a node)",
     "simulation_algorithm_key": "Pick an algorithm",
     "menu_section_shortest_path_title": "Shortest path search",
     "menu_section_cycle_detection_title": "Cycle detection",

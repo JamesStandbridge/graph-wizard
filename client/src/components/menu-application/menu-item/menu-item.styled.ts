@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { MenuItemProps } from './menu-item.type';
 
-export const MenuItemContainer = styled.div`
+export const MenuItemContainer = styled.div<MenuItemProps>`
     width: fit-content;
     cursor: pointer;
     padding: 5px;
@@ -10,6 +11,15 @@ export const MenuItemContainer = styled.div`
     &:hover {
         background-color: #d3d3d366;
     }
+
+    ${(props) =>
+        props.selected
+            ? `background-color: #00e3cd52;
+
+        &:hover {background-color: #00e3cd52;
+        }
+    `
+            : ``}
 `;
 
 export const MenuItemIcon = styled.div`

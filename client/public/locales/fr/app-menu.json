@@ -4,7 +4,7 @@
     "simulation_btn_reset": "Réinitialiser",
     "simulation_start_node_key": "Noeud de départ",
     "simulation_end_node_key": "Noeud d'arrivé",
-    "simulation_select_node_helper": "Veuillez selectionner un noeud",
+    "simulation_select_node_helper": "Veuillez selectionner un noeud (clic-D sur un noeud)",
     "simulation_algorithm_key": "Choisissez un algorithme",
     "menu_section_shortest_path_title": "Recherche du chemin le plus court",
     "menu_section_cycle_detection_title": "Détection de cycle",

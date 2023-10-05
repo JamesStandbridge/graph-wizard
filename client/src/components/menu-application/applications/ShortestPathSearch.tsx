@@ -12,7 +12,7 @@ import {
     SectionTitle,
 } from '../menu-application.styled';
 import MenuItem from '../menu-item/MenuItem';
-import { GraphAlgorithm } from '../../../state-manager/store.type';
+import { SupportedGraphAlgorithm } from '../../../state-manager/store.type';
 import { useGraphSimulationStore } from '../../../state-manager/simulationStore';
 
 type Props = { isOpen: boolean; onToggle: () => void };
@@ -20,12 +20,15 @@ type Props = { isOpen: boolean; onToggle: () => void };
 const ShortestPathSearch = ({ isOpen, onToggle }: Props) => {
     const { t } = useTranslation('app-menu');
 
-    const setAlgorithm = useGraphSimulationStore((state) => state.setAlgorithm);
-
     const color = '#f28c38';
 
+    const setAlgorithm = useGraphSimulationStore((state) => state.setAlgorithm);
+    const currentAlgorithm = useGraphSimulationStore(
+        (state) => state.algorithm,
+    );
+
     const handleClick = (name: string) => {
-        const algorithm = name as GraphAlgorithm;
+        const algorithm = name as SupportedGraphAlgorithm;
         setAlgorithm(algorithm);
     };
 
@@ -44,18 +47,21 @@ const ShortestPathSearch = ({ isOpen, onToggle }: Props) => {
                         icon={<TbCircleLetterD />}
                         title="Dijkstra"
                         onClick={() => handleClick('dijkstra')}
+                        selected={currentAlgorithm === 'dijkstra'}
                     />
                     <MenuItem
                         color={color}
                         icon={<RiSubtractFill />}
                         title="Bellman-Ford"
                         onClick={() => handleClick('bellman-ford')}
+                        selected={currentAlgorithm === 'bellman-ford'}
                     />
                     <MenuItem
                         color={color}
                         icon={<FaStarOfLife />}
                         title="A star"
                         onClick={() => handleClick('a-star')}
+                        selected={currentAlgorithm === 'a-star'}
                     />
                 </SectionBody>
             ) : null}

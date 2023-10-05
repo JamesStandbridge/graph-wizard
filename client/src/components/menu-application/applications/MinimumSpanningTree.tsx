@@ -10,6 +10,8 @@ import {
     SectionTitle,
 } from '../menu-application.styled';
 import MenuItem from '../menu-item/MenuItem';
+import { SupportedGraphAlgorithm } from '../../../state-manager/store.type';
+import { useGraphSimulationStore } from '../../../state-manager/simulationStore';
 
 type Props = { isOpen: boolean; onToggle: () => void };
 
@@ -17,6 +19,17 @@ const MinimumSpanningTree = ({ isOpen, onToggle }: Props) => {
     const { t } = useTranslation('app-menu');
 
     const color = '#aa4141';
+
+    const setAlgorithm = useGraphSimulationStore((state) => state.setAlgorithm);
+    const currentAlgorithm = useGraphSimulationStore(
+        (state) => state.algorithm,
+    );
+
+    const handleClick = (name: string) => {
+        const algorithm = name as SupportedGraphAlgorithm;
+        setAlgorithm(algorithm);
+    };
+
     return (
         <MenuSection>
             <SectionHeader onClick={() => onToggle()}>
@@ -31,8 +44,16 @@ const MinimumSpanningTree = ({ isOpen, onToggle }: Props) => {
                         color={color}
                         icon={<PiGraph />}
                         title="Kruskal"
+                        onClick={() => handleClick('kruskal')}
+                        selected={currentAlgorithm === 'kruskal'}
                     />
-                    <MenuItem color={color} icon={<PiGraph />} title="Prim" />
+                    <MenuItem
+                        color={color}
+                        icon={<PiGraph />}
+                        title="Prim"
+                        onClick={() => handleClick('prim')}
+                        selected={currentAlgorithm === 'prim'}
+                    />
                 </SectionBody>
             ) : null}
         </MenuSection>

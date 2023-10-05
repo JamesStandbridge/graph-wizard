@@ -4,11 +4,17 @@ import {
     MenuItemTitle,
 } from './menu-item.styled';
 
-type Props = { icon: any; title: string; color: string; onClick: () => void };
+type Props = {
+    icon: any;
+    title: string;
+    color: string;
+    onClick: () => void;
+    selected: boolean;
+};
 
-const MenuItem = ({ icon, title, color, onClick }: Props) => {
+const MenuItem = ({ icon, title, color, onClick, selected }: Props) => {
     return (
-        <MenuItemContainer onClick={onClick}>
+        <MenuItemContainer selected={selected} onClick={onClick}>
             <MenuItemIcon color={color}>{icon}</MenuItemIcon>
             <MenuItemTitle>{title}</MenuItemTitle>
         </MenuItemContainer>

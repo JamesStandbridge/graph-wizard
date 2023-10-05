@@ -1,8 +1,10 @@
 import { create } from 'zustand';
+
 import {
     AlgorithmConfiguration,
+    BellmanFordConfiguration,
     DijkstraConfiguration,
-    GraphAlgorithm,
+    SupportedGraphAlgorithm,
     GraphSimulationState,
 } from './store.type';
 
@@ -13,8 +15,11 @@ export const useGraphSimulationStore = create<GraphSimulationState>()(
         algorithm: null,
         configuration: null,
 
-        setAlgorithm: (algorithm: GraphAlgorithm | null) => {
-            set({ algorithm, configuration: initialDijkstraState });
+        setAlgorithm: (algorithm: SupportedGraphAlgorithm | null) => {
+            set({
+                algorithm,
+                configuration: algorithm ? initStateMapping[algorithm] : null,
+            });
         },
 
         setConfiguration: (configuration: AlgorithmConfiguration | null) =>
@@ -22,7 +27,29 @@ export const useGraphSimulationStore = create<GraphSimulationState>()(
     }),
 );
 
+export const initialBellmanFordState: BellmanFordConfiguration = {
+    startNodeId: null,
+    endNodeId: null,
+};
+
 export const initialDijkstraState: DijkstraConfiguration = {
     startNodeId: null,
     endNodeId: null,
+};
+
+const initStateMapping: Record<
+    SupportedGraphAlgorithm,
+    AlgorithmConfiguration
+> = {
+    dijkstra: initialDijkstraState,
+    'a-star': initialDijkstraState,
+    'bellman-ford': initialBellmanFordState,
+    bfs: initialDijkstraState,
+    dfs: initialDijkstraState,
+    'girvan-newman': initialDijkstraState,
+    kosaraju: initialDijkstraState,
+    kruskal: initialDijkstraState,
+    prim: initialDijkstraState,
+    tarjan: initialDijkstraState,
+    'union-find': initialDijkstraState,
 };

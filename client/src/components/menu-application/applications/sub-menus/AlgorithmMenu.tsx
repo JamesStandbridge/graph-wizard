@@ -1,5 +1,11 @@
 import { useGraphSimulationStore } from '../../../../state-manager/simulationStore';
-import { ApplicationMenuContainer } from './algorithm-menu.styled';
+import {
+    ApplicationMenuContainer,
+    MenuHeader,
+    MenuTitle,
+} from './algorithm-menu.styled';
+
+import BellmanFordConfigurationMenu from './dijkstra/BellmanFordConfigurationMenu';
 import DijkstraConfigurationMenu from './dijkstra/DijkstraConfigurationMenu';
 
 type Props = {};
@@ -9,17 +15,27 @@ const AlgorithmMenu = ({}: Props) => {
         (state) => state.algorithm,
     );
 
-    console.log(currentAlgorithm);
+    if (!currentAlgorithm) return null;
 
-    if (currentAlgorithm === 'dijkstra') {
-        return (
-            <ApplicationMenuContainer>
-                <DijkstraConfigurationMenu />
-            </ApplicationMenuContainer>
-        );
-    }
+    const renderMenu = () => {
+        switch (currentAlgorithm) {
+            case 'dijkstra':
+                return <DijkstraConfigurationMenu />;
+            case 'bellman-ford':
+                return <BellmanFordConfigurationMenu />;
+            default:
+                return null;
+        }
+    };
 
-    return null;
+    return (
+        <ApplicationMenuContainer>
+            <MenuHeader>
+                <MenuTitle>{`${currentAlgorithm} configuration`}</MenuTitle>
+            </MenuHeader>
+            {renderMenu()}
+        </ApplicationMenuContainer>
+    );
 };
 
 export default AlgorithmMenu;

@@ -10,6 +10,8 @@ import {
     SectionTitle,
 } from '../menu-application.styled';
 import MenuItem from '../menu-item/MenuItem';
+import { useGraphSimulationStore } from '../../../state-manager/simulationStore';
+import { SupportedGraphAlgorithm } from '../../../state-manager/store.type';
 
 type Props = { isOpen: boolean; onToggle: () => void };
 
@@ -17,6 +19,16 @@ const StronglyConnectedComponent = ({ isOpen, onToggle }: Props) => {
     const { t } = useTranslation('app-menu');
 
     const color = '#f9bd38';
+
+    const setAlgorithm = useGraphSimulationStore((state) => state.setAlgorithm);
+    const currentAlgorithm = useGraphSimulationStore(
+        (state) => state.algorithm,
+    );
+
+    const handleClick = (name: string) => {
+        const algorithm = name as SupportedGraphAlgorithm;
+        setAlgorithm(algorithm);
+    };
 
     return (
         <MenuSection>
@@ -32,11 +44,15 @@ const StronglyConnectedComponent = ({ isOpen, onToggle }: Props) => {
                         color={color}
                         icon={<SiGraphql />}
                         title="Tarjan"
+                        onClick={() => handleClick('tarjan')}
+                        selected={currentAlgorithm === 'tarjan'}
                     />
                     <MenuItem
                         color={color}
                         icon={<SiGraphql />}
                         title="Kosaraju"
+                        onClick={() => handleClick('kosaraju')}
+                        selected={currentAlgorithm === 'kosaraju'}
                     />
                 </SectionBody>
             ) : null}

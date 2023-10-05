@@ -9,6 +9,12 @@ export const MenuLine = styled.div`
 
 export const MenuLabel = styled.p``;
 
+export const MenuHeader = styled.div``;
+
+export const MenuTitle = styled.h3`
+    text-transform: capitalize;
+`;
+
 export const MenuValue = styled.p<MenuValueProps>`
     ${(props) =>
         props.italic
@@ -25,7 +31,7 @@ export const ApplicationMenuContainer = styled.div`
     width: 400px;
     border: solid 1px lightgrey;
     left: 30px;
-    z-index: 1000000;
+    z-index: 100;
     background-color: white;
     top: 80px;
 `;
