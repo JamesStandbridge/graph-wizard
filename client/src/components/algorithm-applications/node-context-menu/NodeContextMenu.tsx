@@ -3,6 +3,7 @@ import React from 'react';
 import { useGraphSimulationStore } from '../../../state-manager/simulationStore';
 import { ContextMenu } from './node-context-menu.styled';
 import DijkstraNodeContextMenu from '../dijkstra/DijkstraNodeContextMenu';
+import BellmanFordNodeContextMenu from '../bellman-ford/BellmanFordNodeContextMenu';
 
 interface Props {
     x: number;
@@ -25,6 +26,9 @@ const NodeContextMenu: React.FC<Props> = ({ x, y, nodeId }) => {
         switch (currentAlgorithm) {
             case 'dijkstra':
                 return <DijkstraNodeContextMenu nodeId={nodeId} />;
+
+            case 'bellman-ford':
+                return <BellmanFordNodeContextMenu nodeId={nodeId} />;
             default:
                 return null;
         }
