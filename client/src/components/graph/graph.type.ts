@@ -9,7 +9,7 @@ export interface GraphNode extends d3.SimulationNodeDatum {
 export type GraphLink = {
     source: GraphNode | string; // Peut être soit un nœud direct, soit un ID de nœud
     target: GraphNode | string;
-    value: number;
+    weight: number;
     oriented: boolean;
 };
 

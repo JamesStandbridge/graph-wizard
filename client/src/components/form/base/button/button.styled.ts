@@ -18,10 +18,25 @@ export const OutlinedButton = styled(BaseButton)`
     color: ${({ theme, severity }) => theme[severity]};
     border: solid 1px ${({ theme, severity }) => theme[severity]};
     background-color: white;
+
+    ${(props) =>
+        props.disabled
+            ? `
+        background-color: lightgrey;
+    `
+            : ``}
 `;
 
 export const BlockButton = styled(BaseButton)`
     color: white;
     border: solid 1px ${({ theme, severity }) => theme[severity]};
     background-color: ${({ theme, severity }) => theme[severity]};
+
+    ${(props) =>
+        props.disabled
+            ? `
+        background-color: lightgrey;
+        border: solid 1px lightgrey;
+    `
+            : ``}
 `;

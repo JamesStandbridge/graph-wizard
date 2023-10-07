@@ -7,6 +7,7 @@ type Props = {
     severity?: 'info' | 'danger';
     outlined?: boolean;
     icon?: ReactNode;
+    disabled?: boolean;
 };
 
 const Button = ({
@@ -15,17 +16,26 @@ const Button = ({
     outlined = false,
     severity = 'info',
     icon = null,
+    disabled = false,
 }: Props) => {
     if (outlined) {
         return (
-            <OutlinedButton severity={severity} onClick={onClick}>
+            <OutlinedButton
+                disabled={disabled}
+                severity={severity}
+                onClick={onClick}
+            >
                 {icon}
                 {children}
             </OutlinedButton>
         );
     } else {
         return (
-            <BlockButton severity={severity} onClick={onClick}>
+            <BlockButton
+                disabled={disabled}
+                severity={severity}
+                onClick={onClick}
+            >
                 {icon}
                 {children}
             </BlockButton>

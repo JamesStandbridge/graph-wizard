@@ -58,7 +58,7 @@ export const graphElements = {
             .selectAll('text')
             .data(links)
             .join('text')
-            .text((d: GraphLink) => d.value)
+            .text((d: GraphLink) => d.weight)
             .attr('font-size', graph_constants.link_label_font_size)
             .attr('dx', graph_constants.link_label_dx)
             .attr('dy', graph_constants.link_label_dy);

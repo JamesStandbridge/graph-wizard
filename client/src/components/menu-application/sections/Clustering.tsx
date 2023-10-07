@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { LiaAngleDownSolid, LiaAngleUpSolid } from 'react-icons/lia';
-import { PiGraph } from 'react-icons/pi';
+import { ImMakeGroup } from 'react-icons/im';
 
 import {
     MenuSection,
@@ -10,15 +10,16 @@ import {
     SectionTitle,
 } from '../menu-application.styled';
 import MenuItem from '../menu-item/MenuItem';
-import { SupportedGraphAlgorithm } from '../../../state-manager/store.type';
+import { SupportedGraphAlgorithm } from '../../../state-manager/simulation-store.type';
 import { useGraphSimulationStore } from '../../../state-manager/simulationStore';
+import MenuApplicationService from '../menu-application.service';
 
 type Props = { isOpen: boolean; onToggle: () => void };
 
-const MinimumSpanningTree = ({ isOpen, onToggle }: Props) => {
+const Clustering = ({ isOpen, onToggle }: Props) => {
     const { t } = useTranslation('app-menu');
 
-    const color = '#aa4141';
+    const color = '#f9bd38';
 
     const setAlgorithm = useGraphSimulationStore((state) => state.setAlgorithm);
     const currentAlgorithm = useGraphSimulationStore(
@@ -34,7 +35,7 @@ const MinimumSpanningTree = ({ isOpen, onToggle }: Props) => {
         <MenuSection>
             <SectionHeader onClick={() => onToggle()}>
                 <SectionTitle>
-                    {t('menu_section_min_spanning_tree_title')}
+                    {t('menu_section_clustering_title')}
                 </SectionTitle>
                 {isOpen ? <LiaAngleUpSolid /> : <LiaAngleDownSolid />}
             </SectionHeader>
@@ -42,17 +43,13 @@ const MinimumSpanningTree = ({ isOpen, onToggle }: Props) => {
                 <SectionBody>
                     <MenuItem
                         color={color}
-                        icon={<PiGraph />}
-                        title="Kruskal"
-                        onClick={() => handleClick('kruskal')}
-                        selected={currentAlgorithm === 'kruskal'}
-                    />
-                    <MenuItem
-                        color={color}
-                        icon={<PiGraph />}
-                        title="Prim"
-                        onClick={() => handleClick('prim')}
-                        selected={currentAlgorithm === 'prim'}
+                        icon={<ImMakeGroup />}
+                        title="Girvan-Newman"
+                        onClick={() => handleClick('girvan-newman')}
+                        selected={currentAlgorithm === 'girvan-newman'}
+                        requirementState={MenuApplicationService.checkGraphRequirements(
+                            'girvan-newman',
+                        )}
                     />
                 </SectionBody>
             ) : null}
@@ -60,4 +57,4 @@ const MinimumSpanningTree = ({ isOpen, onToggle }: Props) => {
     );
 };
 
-export default MinimumSpanningTree;
+export default Clustering;

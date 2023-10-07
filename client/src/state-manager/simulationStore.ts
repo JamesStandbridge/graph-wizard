@@ -2,16 +2,14 @@ import { create } from 'zustand';
 
 import {
     AlgorithmConfiguration,
-    BellmanFordConfiguration,
-    DijkstraConfiguration,
     SupportedGraphAlgorithm,
     GraphSimulationState,
-} from './store.type';
+} from './simulation-store.type';
+import { initialDijkstraState } from '../components/algorithm-applications/dijkstra/dijkstra-application.service';
+import { initialBellmanFordState } from '../components/algorithm-applications/bellman-ford/bellman-ford-application.service';
 
 export const useGraphSimulationStore = create<GraphSimulationState>()(
     (set) => ({
-        nodes: [],
-        links: [],
         algorithm: null,
         configuration: null,
 
@@ -26,16 +24,6 @@ export const useGraphSimulationStore = create<GraphSimulationState>()(
             set({ configuration }),
     }),
 );
-
-export const initialBellmanFordState: BellmanFordConfiguration = {
-    startNodeId: null,
-    endNodeId: null,
-};
-
-export const initialDijkstraState: DijkstraConfiguration = {
-    startNodeId: null,
-    endNodeId: null,
-};
 
 const initStateMapping: Record<
     SupportedGraphAlgorithm,

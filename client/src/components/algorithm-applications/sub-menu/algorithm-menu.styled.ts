@@ -9,7 +9,16 @@ export const MenuLine = styled.div`
 
 export const MenuLabel = styled.p``;
 
-export const MenuHeader = styled.div``;
+export const MenuHeader = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+export const MenuHeaderActions = styled.div`
+    display: flex;
+    align-items: center;
+`;
 
 export const MenuTitle = styled.h3`
     text-transform: capitalize;

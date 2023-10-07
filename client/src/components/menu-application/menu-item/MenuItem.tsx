@@ -1,3 +1,5 @@
+import { Tooltip } from 'antd';
+import { RequirementResponse } from '../../algorithm-applications/algorithm-application.type';
 import {
     MenuItemContainer,
     MenuItemIcon,
@@ -10,14 +12,33 @@ type Props = {
     color: string;
     onClick: () => void;
     selected: boolean;
+    requirementState: RequirementResponse;
 };
 
-const MenuItem = ({ icon, title, color, onClick, selected }: Props) => {
+const MenuItem = ({
+    icon,
+    title,
+    color,
+    onClick,
+    selected,
+    requirementState,
+}: Props) => {
     return (
-        <MenuItemContainer selected={selected} onClick={onClick}>
-            <MenuItemIcon color={color}>{icon}</MenuItemIcon>
-            <MenuItemTitle>{title}</MenuItemTitle>
-        </MenuItemContainer>
+        <Tooltip placement="bottom" title={requirementState.errorMessage}>
+            <MenuItemContainer
+                disabled={requirementState.status === 'error'}
+                selected={selected}
+                onClick={onClick}
+            >
+                <MenuItemIcon
+                    disabled={requirementState.status === 'error'}
+                    color={color}
+                >
+                    {icon}
+                </MenuItemIcon>
+                <MenuItemTitle>{title}</MenuItemTitle>
+            </MenuItemContainer>
+        </Tooltip>
     );
 };
 

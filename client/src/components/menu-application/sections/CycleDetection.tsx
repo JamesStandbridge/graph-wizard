@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 import { LiaAngleDownSolid, LiaAngleUpSolid } from 'react-icons/lia';
-import { SiGraphql } from 'react-icons/si';
+import { TbBinaryTree } from 'react-icons/tb';
+import { MdOutlineGroupWork } from 'react-icons/md';
 
 import {
     MenuSection,
@@ -10,15 +11,16 @@ import {
     SectionTitle,
 } from '../menu-application.styled';
 import MenuItem from '../menu-item/MenuItem';
+import { SupportedGraphAlgorithm } from '../../../state-manager/simulation-store.type';
 import { useGraphSimulationStore } from '../../../state-manager/simulationStore';
-import { SupportedGraphAlgorithm } from '../../../state-manager/store.type';
+import MenuApplicationService from '../menu-application.service';
 
 type Props = { isOpen: boolean; onToggle: () => void };
 
-const StronglyConnectedComponent = ({ isOpen, onToggle }: Props) => {
+const CycleDetection = ({ isOpen, onToggle }: Props) => {
     const { t } = useTranslation('app-menu');
 
-    const color = '#f9bd38';
+    const color = '#29af5d';
 
     const setAlgorithm = useGraphSimulationStore((state) => state.setAlgorithm);
     const currentAlgorithm = useGraphSimulationStore(
@@ -34,7 +36,7 @@ const StronglyConnectedComponent = ({ isOpen, onToggle }: Props) => {
         <MenuSection>
             <SectionHeader onClick={() => onToggle()}>
                 <SectionTitle>
-                    {t('menu_section_strongly_connected_component_title')}
+                    {t('menu_section_cycle_detection_title')}
                 </SectionTitle>
                 {isOpen ? <LiaAngleUpSolid /> : <LiaAngleDownSolid />}
             </SectionHeader>
@@ -42,17 +44,23 @@ const StronglyConnectedComponent = ({ isOpen, onToggle }: Props) => {
                 <SectionBody>
                     <MenuItem
                         color={color}
-                        icon={<SiGraphql />}
-                        title="Tarjan"
-                        onClick={() => handleClick('tarjan')}
-                        selected={currentAlgorithm === 'tarjan'}
+                        icon={<TbBinaryTree />}
+                        title="DFS"
+                        onClick={() => handleClick('dfs')}
+                        selected={currentAlgorithm === 'dfs'}
+                        requirementState={MenuApplicationService.checkGraphRequirements(
+                            'dfs',
+                        )}
                     />
                     <MenuItem
                         color={color}
-                        icon={<SiGraphql />}
-                        title="Kosaraju"
-                        onClick={() => handleClick('kosaraju')}
-                        selected={currentAlgorithm === 'kosaraju'}
+                        icon={<MdOutlineGroupWork />}
+                        title="Union-Find"
+                        onClick={() => handleClick('union-find')}
+                        selected={currentAlgorithm === 'union-find'}
+                        requirementState={MenuApplicationService.checkGraphRequirements(
+                            'union-find',
+                        )}
                     />
                 </SectionBody>
             ) : null}
@@ -60,4 +68,4 @@ const StronglyConnectedComponent = ({ isOpen, onToggle }: Props) => {
     );
 };
 
-export default StronglyConnectedComponent;
+export default CycleDetection;

@@ -1,9 +1,4 @@
-import { GraphLink, GraphNode } from '../components/graph/graph.type';
-
 export interface GraphSimulationState {
-    nodes: GraphNode[];
-    links: GraphLink[];
-
     configuration: AlgorithmConfiguration | null;
     algorithm: SupportedGraphAlgorithm | null;
 
@@ -26,13 +21,3 @@ export type SupportedGraphAlgorithm =
     | 'girvan-newman';
 
 export type AlgorithmConfiguration = {};
-
-export interface DijkstraConfiguration extends AlgorithmConfiguration {
-    startNodeId: string | null;
-    endNodeId: string | null;
-}
-
-export interface BellmanFordConfiguration extends AlgorithmConfiguration {
-    startNodeId: string | null;
-    endNodeId: string | null;
-}

@@ -1,26 +1,26 @@
 import { useTranslation } from 'react-i18next';
 import { LiaRedoAltSolid, LiaPlaySolid } from 'react-icons/lia';
 
-import Button from '../../../../form/base/button/Button';
 import {
-    AlgorithmConfiguration,
-    BellmanFordConfiguration,
-} from '../../../../../state-manager/store.type';
-import { useGraphSimulationStore } from '../../../../../state-manager/simulationStore';
-import { MenuLabel, MenuLine, MenuValue } from '../algorithm-menu.styled';
+    MenuLabel,
+    MenuLine,
+    MenuValue,
+} from '../sub-menu/algorithm-menu.styled';
+import Button from '../../form/base/button/Button';
+import { useGraphSimulationStore } from '../../../state-manager/simulationStore';
+import DijkstraApplication from './bellman-ford-application.service';
+import { BellmanFordConfiguration } from './bellman-ford-application.type';
 
 type Props = {};
 
 const BellmanFordConfigurationMenu = ({}: Props) => {
     const { t } = useTranslation('app-menu');
 
-    const algoConf: AlgorithmConfiguration | null = useGraphSimulationStore(
+    const appConf: BellmanFordConfiguration = useGraphSimulationStore(
         (state) => state.configuration,
-    );
+    ) as BellmanFordConfiguration;
 
-    if (!algoConf) return null;
-
-    const bellmanFord = algoConf as BellmanFordConfiguration;
+    if (!appConf) return null;
 
     const onSimulationTrigger = () => {};
 
@@ -30,17 +30,17 @@ const BellmanFordConfigurationMenu = ({}: Props) => {
         <>
             <MenuLine>
                 <MenuLabel>{t('simulation_start_node_key')}</MenuLabel>
-                <MenuValue italic={!bellmanFord.startNodeId}>
-                    {bellmanFord.startNodeId
-                        ? bellmanFord.startNodeId
+                <MenuValue italic={!appConf.startNodeId}>
+                    {appConf.startNodeId
+                        ? appConf.startNodeId
                         : t('simulation_select_node_helper')}
                 </MenuValue>
             </MenuLine>
             <MenuLine>
                 <MenuLabel>{t('simulation_end_node_key')}</MenuLabel>
-                <MenuValue italic={!bellmanFord.endNodeId}>
-                    {bellmanFord.endNodeId
-                        ? bellmanFord.endNodeId
+                <MenuValue italic={!appConf.endNodeId}>
+                    {appConf.endNodeId
+                        ? appConf.endNodeId
                         : t('simulation_select_node_helper')}
                 </MenuValue>
             </MenuLine>
@@ -48,12 +48,17 @@ const BellmanFordConfigurationMenu = ({}: Props) => {
                 <MenuLabel>{t('simulation_menu_key')}</MenuLabel>
                 <Button
                     severity={isSimulating ? 'danger' : 'info'}
-                    onClick={onSimulationTrigger}
+                    onClick={() => {}}
                     icon={isSimulating ? <LiaRedoAltSolid /> : <LiaPlaySolid />}
+                    disabled={
+                        DijkstraApplication.checkSimulationRequirements()
+                            .status === 'error'
+                    }
                 >
-                    {isSimulating
+                    {t('simulation_btn_start')}
+                    {/* {isSimulating
                         ? t('simulation_btn_reset')
-                        : t('simulation_btn_start')}
+                        : } */}
                 </Button>
             </MenuLine>
         </>

@@ -12,8 +12,9 @@ import {
     SectionTitle,
 } from '../menu-application.styled';
 import MenuItem from '../menu-item/MenuItem';
-import { SupportedGraphAlgorithm } from '../../../state-manager/store.type';
+import { SupportedGraphAlgorithm } from '../../../state-manager/simulation-store.type';
 import { useGraphSimulationStore } from '../../../state-manager/simulationStore';
+import MenuApplicationService from '../menu-application.service';
 
 type Props = { isOpen: boolean; onToggle: () => void };
 
@@ -48,6 +49,9 @@ const ShortestPathSearch = ({ isOpen, onToggle }: Props) => {
                         title="Dijkstra"
                         onClick={() => handleClick('dijkstra')}
                         selected={currentAlgorithm === 'dijkstra'}
+                        requirementState={MenuApplicationService.checkGraphRequirements(
+                            'dijkstra',
+                        )}
                     />
                     <MenuItem
                         color={color}
@@ -55,6 +59,9 @@ const ShortestPathSearch = ({ isOpen, onToggle }: Props) => {
                         title="Bellman-Ford"
                         onClick={() => handleClick('bellman-ford')}
                         selected={currentAlgorithm === 'bellman-ford'}
+                        requirementState={MenuApplicationService.checkGraphRequirements(
+                            'bellman-ford',
+                        )}
                     />
                     <MenuItem
                         color={color}
@@ -62,6 +69,9 @@ const ShortestPathSearch = ({ isOpen, onToggle }: Props) => {
                         title="A star"
                         onClick={() => handleClick('a-star')}
                         selected={currentAlgorithm === 'a-star'}
+                        requirementState={MenuApplicationService.checkGraphRequirements(
+                            'a-star',
+                        )}
                     />
                 </SectionBody>
             ) : null}

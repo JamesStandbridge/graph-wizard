@@ -15,7 +15,7 @@ i18n.use(HttpBackend) // Utilisez HttpBackend pour charger des traductions à pa
     .init({
         lng: 'en', // force la langue à 'en'
         fallbackLng: 'en', // langue de repli
-        debug: true,
+        debug: false,
         ns: ['translation', 'app-menu', 'node-context-menu'],
         defaultNS: 'translation',
 

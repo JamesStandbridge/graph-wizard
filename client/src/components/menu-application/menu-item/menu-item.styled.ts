@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MenuItemProps } from './menu-item.type';
+import { MenuItemIconProps, MenuItemProps } from './menu-item.type';
 
 export const MenuItemContainer = styled.div<MenuItemProps>`
     width: fit-content;
@@ -20,13 +20,25 @@ export const MenuItemContainer = styled.div<MenuItemProps>`
         }
     `
             : ``}
+
+    ${(props) =>
+        props.disabled
+            ? `
+        background-color: white;
+        color: grey;
+        &:hover {background-color: white;
+    `
+            : ``}
 `;
 
-export const MenuItemIcon = styled.div`
+export const MenuItemIcon = styled.div<MenuItemIconProps>`
     font-size: 40px;
-    color: ${(props) => props.color};
     text-align: center;
     height: 45px;
+
+    color: ${(props) => props.color};
+
+    ${(props) => (props.disabled ? `color: grey;` : ``)}
 `;
 
 export const MenuItemTitle = styled.p`

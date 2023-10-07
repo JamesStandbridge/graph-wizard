@@ -3,26 +3,23 @@ import * as d3 from 'd3';
 
 import { GraphLink, GraphNode, PathStep } from './graph.type';
 import { graphElements, graphStylor, isGraphNode } from './graph-simulation';
-import ApplicationMenu from './application-menu/ApplicationMenu';
-import NodeContextMenu from './node-context-menu/NodeContextMenu';
 import { GraphContainer, GraphSvg } from './graph.styled';
-import { useGraphSimulationStore } from '../../state-manager/simulationStore';
 import { graph_constants } from './graph.constants';
+import { useGraphStore } from '../../state-manager/graphStore';
+import NodeContextMenu from '../algorithm-applications/node-context-menu/NodeContextMenu';
 
 type Props = {
-    nodes: GraphNode[];
-    links: GraphLink[];
     path: PathStep[];
 };
 
-const Graph = ({ nodes, links, path }: Props) => {
+const Graph = ({ path }: Props) => {
     const svgRef = useRef(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [isSimulating, setIsSimulating] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
 
-    const startNodeId = useGraphSimulationStore((state) => state.startNodeId);
-    const endNodeId = useGraphSimulationStore((state) => state.endNodeId);
+    const nodes = useGraphStore((state) => state.nodes);
+    const links = useGraphStore((state) => state.links);
 
     const [contextMenuPosition, setContextMenuPosition] = useState<{
         x: number;
@@ -30,9 +27,9 @@ const Graph = ({ nodes, links, path }: Props) => {
         entityId: string;
     } | null>(null);
 
-    useEffect(() => {
-        onSetStartEndNodes();
-    }, [startNodeId, endNodeId]);
+    // useEffect(() => {
+    //     onSetStartEndNodes();
+    // }, [startNodeId, endNodeId]);
 
     useEffect(() => {
         window.addEventListener('resize', resize);
@@ -275,17 +272,17 @@ const Graph = ({ nodes, links, path }: Props) => {
             .classed('start-node', false)
             .attr('fill', 'url(#circleGradient)');
 
-        if (startNodeId) {
-            d3.select(`circle#${startNodeId}`)
-                .attr('fill', 'url(#startNodeGradient)')
-                .classed('start-node', true);
-        }
+        // if (startNodeId) {
+        //     d3.select(`circle#${startNodeId}`)
+        //         .attr('fill', 'url(#startNodeGradient)')
+        //         .classed('start-node', true);
+        // }
 
-        if (endNodeId) {
-            d3.select(`circle#${endNodeId}`)
-                .attr('fill', 'url(#endNodeGradient)')
-                .classed('end-node', true);
-        }
+        // if (endNodeId) {
+        //     d3.select(`circle#${endNodeId}`)
+        //         .attr('fill', 'url(#endNodeGradient)')
+        //         .classed('end-node', true);
+        // }
     };
 
     return (
@@ -295,21 +292,9 @@ const Graph = ({ nodes, links, path }: Props) => {
                     x={contextMenuPosition.x}
                     y={contextMenuPosition.y}
                     nodeId={contextMenuPosition.entityId}
-                    closeMenu={closeContextMenu}
                 />
             )}
             <GraphContainer ref={containerRef}>
-                {/* <ApplicationMenu
-                    onSimulationTrigger={() => {
-                        if (isSimulating) {
-                            resetSimulation();
-                        } else {
-                            setIsSimulating(true);
-                            colorizeStep();
-                        }
-                    }}
-                    isSimulating={isSimulating}
-                /> */}
                 <GraphSvg ref={svgRef}></GraphSvg>
             </GraphContainer>
         </>

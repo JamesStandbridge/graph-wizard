@@ -10,11 +10,11 @@ import {
 
 import { BsCodeSquare } from 'react-icons/bs';
 
-import ShortestPathSearch from './applications/ShortestPathSearch';
-import CycleDetection from './applications/CycleDetection';
-import MinimumSpanningTree from './applications/MinimumSpanningTree';
-import StronglyConnectedComponent from './applications/StronglyConnectedComponent';
-import Clustering from './applications/Clustering';
+import ShortestPathSearch from './sections/ShortestPathSearch';
+import CycleDetection from './sections/CycleDetection';
+import MinimumSpanningTree from './sections/MinimumSpanningTree';
+import StronglyConnectedComponent from './sections/StronglyConnectedComponent';
+import Clustering from './sections/Clustering';
 
 type Props = {};
 
