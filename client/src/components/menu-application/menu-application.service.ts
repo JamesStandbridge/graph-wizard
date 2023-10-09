@@ -1,7 +1,7 @@
-import { SupportedGraphAlgorithm } from '../../state-manager/simulation-store.type';
-import { RequirementResponse } from '../algorithm-applications/algorithm-application.type';
-import BellmanFordApplication from '../algorithm-applications/bellman-ford/bellman-ford-application.service';
-import DijkstraApplication from '../algorithm-applications/dijkstra/dijkstra-application.service';
+import { SupportedGraphAlgorithm } from '../../state-manager/simulation-store/simulation-store.type';
+import { RequirementResponse } from '../applications/algorithm/algorithm-application.type';
+import BellmanFordApplication from '../applications/algorithm/bellman-ford/bellman-ford-application.service';
+import DijkstraApplication from '../applications/algorithm/dijkstra/dijkstra-application.service';
 
 const MenuApplicationService = {
     checkGraphRequirements: (
@@ -15,7 +15,7 @@ const MenuApplicationService = {
             default:
                 return {
                     status: 'error',
-                    errorMessage: 'Not implemented yet',
+                    errorMessage: 'error_not_implemented',
                 };
         }
     },

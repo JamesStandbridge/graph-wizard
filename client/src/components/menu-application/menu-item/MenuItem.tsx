@@ -1,5 +1,6 @@
 import { Tooltip } from 'antd';
-import { RequirementResponse } from '../../algorithm-applications/algorithm-application.type';
+import { useTranslation } from 'react-i18next';
+import { RequirementResponse } from '../../applications/algorithm/algorithm-application.type';
 import {
     MenuItemContainer,
     MenuItemIcon,
@@ -12,7 +13,7 @@ type Props = {
     color: string;
     onClick: () => void;
     selected: boolean;
-    requirementState: RequirementResponse;
+    requirementState?: RequirementResponse;
 };
 
 const MenuItem = ({
@@ -21,17 +22,19 @@ const MenuItem = ({
     color,
     onClick,
     selected,
-    requirementState,
+    requirementState = null,
 }: Props) => {
+    const { t } = useTranslation('app-menu');
+
     return (
-        <Tooltip placement="bottom" title={requirementState.errorMessage}>
+        <Tooltip placement="bottom" title={t(requirementState?.errorMessage)}>
             <MenuItemContainer
-                disabled={requirementState.status === 'error'}
+                disabled={requirementState?.status === 'error'}
                 selected={selected}
                 onClick={onClick}
             >
                 <MenuItemIcon
-                    disabled={requirementState.status === 'error'}
+                    disabled={requirementState?.status === 'error'}
                     color={color}
                 >
                     {icon}

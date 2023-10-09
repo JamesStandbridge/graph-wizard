@@ -11,5 +11,7 @@
     "menu_section_min_spanning_tree_title": "Minimum spanning tree",
     "menu_section_strongly_connected_component_title": "Strongly connected component",
     "menu_section_clustering_title": "Clustering",
-    "menu_application_title": "Algorithms"
+    "algorithm_menu_application_title": "Algorithms",
+    "error_negative_weight": "Negative weight detected",
+    "error_not_implemented": "Not yet implemented"
 }

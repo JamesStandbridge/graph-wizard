@@ -1,6 +1,5 @@
 import { Select as AntSelect } from 'antd';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
-import styled from 'styled-components';
 import { SelectContainer } from './select.styled';
 
 type Props = {

@@ -14,6 +14,7 @@ const LanguageSelector: React.FC = () => {
         <Select
             value={i18n.languages}
             onChange={handleChange}
+            darkMode={true}
             options={languages.map((l) => {
                 return { value: l.code, label: l.label };
             })}

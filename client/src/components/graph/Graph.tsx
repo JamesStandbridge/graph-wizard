@@ -5,8 +5,10 @@ import { GraphLink, GraphNode, PathStep } from './graph.type';
 import { graphElements, graphStylor, isGraphNode } from './graph-simulation';
 import { GraphContainer, GraphSvg } from './graph.styled';
 import { graph_constants } from './graph.constants';
-import { useGraphStore } from '../../state-manager/graphStore';
-import NodeContextMenu from '../algorithm-applications/node-context-menu/NodeContextMenu';
+import { useGraphStore } from '../../state-manager/graph-store/graphStore';
+import { _ReturnNull } from 'i18next';
+import NodeContextMenu from '../applications/context-menu/NodeContextMenu';
+import ContextMenu from '../applications/context-menu/ContextMenu';
 
 type Props = {
     path: PathStep[];
@@ -24,7 +26,7 @@ const Graph = ({ path }: Props) => {
     const [contextMenuPosition, setContextMenuPosition] = useState<{
         x: number;
         y: number;
-        entityId: string;
+        entityId?: string | null;
     } | null>(null);
 
     // useEffect(() => {
@@ -91,7 +93,13 @@ const Graph = ({ path }: Props) => {
 
         node.call(dragBehavior as any);
 
+        svg.on('contextmenu', (event, d) => {
+            highlightNode(null);
+            handleContextMenu(event, null);
+        });
+
         node.on('contextmenu', (event, d) => {
+            event.stopPropagation();
             highlightNode(d.id);
             handleContextMenu(event, d.id);
         });
@@ -228,8 +236,12 @@ const Graph = ({ path }: Props) => {
         setIsSimulating(false);
     };
 
-    const handleContextMenu = (event: React.MouseEvent, nodeId: string) => {
+    const handleContextMenu = (
+        event: React.MouseEvent,
+        nodeId?: string | null,
+    ) => {
         event.preventDefault();
+
         setContextMenuPosition({
             x: event.clientX,
             y: event.clientY,
@@ -287,11 +299,17 @@ const Graph = ({ path }: Props) => {
 
     return (
         <>
-            {contextMenuPosition && (
+            {contextMenuPosition && contextMenuPosition.entityId && (
                 <NodeContextMenu
                     x={contextMenuPosition.x}
                     y={contextMenuPosition.y}
                     nodeId={contextMenuPosition.entityId}
+                />
+            )}
+            {contextMenuPosition && !contextMenuPosition.entityId && (
+                <ContextMenu
+                    x={contextMenuPosition.x}
+                    y={contextMenuPosition.y}
                 />
             )}
             <GraphContainer ref={containerRef}>

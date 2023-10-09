@@ -24,7 +24,7 @@ export const MenuHeaderIcon = styled.div`
     padding: 10px 15px;
     font-size: 25px;
     display: flex;
-    background-color: #10a3e0;
+    background-color: ${(props) => props.color};
     color: white;
     margin-right: 10px;
 `;

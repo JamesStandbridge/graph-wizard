@@ -1,4 +1,6 @@
 {
     "set_start_node": "Noeud de départ",
-    "set_end_node": "Noeud d'arrivé"
+    "set_end_node": "Noeud d'arrivé",
+    "delete_node": "Supprimer",
+    "rename_node": "Renommer"
 }

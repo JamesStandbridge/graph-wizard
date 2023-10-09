@@ -1,5 +1,5 @@
 import Graph from '../graph/Graph';
-import { GraphLink, GraphNode, PathStep } from '../graph/graph.type';
+import { PathStep } from '../graph/graph.type';
 import { GraphApplicationContainer } from './graph-application.styled';
 
 type Props = {};
