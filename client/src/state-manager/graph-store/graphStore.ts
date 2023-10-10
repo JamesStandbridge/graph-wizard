@@ -47,12 +47,13 @@ export const useGraphStore = create<GraphState>()((set) => ({
         })),
 
     deleteNode: (id: string) => {
-        const updatedLinks = initialLinks.filter(
-            (link) => link.source !== id && link.target !== id,
-        );
         set((state) => ({
             nodes: state.nodes.filter((node) => node.id !== id),
-            links: updatedLinks,
+            links: state.links.filter(
+                (link) =>
+                    (link.source as GraphNode).id !== id &&
+                    (link.target as GraphNode).id !== id,
+            ),
         }));
     },
 }));
